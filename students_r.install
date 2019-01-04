@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * This module holds functions useful for Drupal development.
+ *
+ * Please contribute!
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function students_r_schema() {
+  $schema['students_r'] = array(
+    // Example (partial) specification for table "node".
+    'description' => 'The Students Database',
+    'fields' => array(
+      'student_id' => array(
+        'description' => 'this is an unique number to identify each student',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'student_name' => array(
+        'description' => 'Name of student',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'marks' => array(
+        'description' => 'This is number of marks acquired by the student.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array(
+      'student_id',
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Update function for schema.
+ */
+function students_r_update_7000() {
+  drupal_install_schema('students_r');
+}
